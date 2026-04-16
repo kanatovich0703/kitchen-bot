@@ -1,6 +1,15 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
+
+
+class KitchenRequest(BaseModel):
+    length: float
+    kitchen_type: str
+    facade: str
+    hardware: str
+    appliances: str
 
 
 @app.get("/")
@@ -9,21 +18,30 @@ def root():
 
 
 @app.post("/calculate-kitchen")
-def calculate_kitchen(data: dict):
-    length = data.get("length", 0)
-    kitchen_type = data.get("kitchen_type", "")
-    facade = data.get("facade", "")
-    hardware = data.get("hardware", "")
-    appliances = data.get("appliances", "")
+def calculate_kitchen(data: KitchenRequest):
+    length = data.length
+    kitchen_type = data.kitchen_type
+    facade = data.facade
+    hardware = data.hardware
+    appliances = data.appliances
 
     price_per_meter = 120000
 
     if kitchen_type == "corner":
         price_per_meter += 20000
-    if facade == "mdf_paint":
+    elif kitchen_type == "u_shape":
+        price_per_meter += 40000
+
+    if facade == "mdf":
         price_per_meter += 30000
+    elif facade == "mdf_paint":
+        price_per_meter += 50000
+    elif facade == "plastic":
+        price_per_meter += 40000
+
     if hardware == "premium":
         price_per_meter += 20000
+
     if appliances == "yes":
         price_per_meter += 50000
 
