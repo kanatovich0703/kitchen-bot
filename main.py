@@ -30,6 +30,7 @@ def calculate_kitchen(data: dict):
     total_price = length * price_per_meter
 
     return {
-        "price_per_meter": price_per_meter,
-        "total_price": total_price
+        "price_per_meter": int(price_per_meter),
+        "total_price": int(total_price),
+        "message": f"Примерная стоимость кухни: {int(total_price)} тг"
     }
