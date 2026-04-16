@@ -89,7 +89,7 @@ def calculate_kitchen(data: KitchenRequest):
         f"Доводчики: {closers_name} (+{closers_extra:,} тг/м.п.)\n\n"
         f"Итоговая цена за 1 м.п.: {final_price_per_meter:,} тг\n"
         f"Общая примерная стоимость: {int(total_price):,} тг\n\n"
-        f"Точная стоимость зависит от замера и деталей проекта."
+        f"Точную стоимость определит наш замерщик на месте измерив точную длину кухни."
     ).replace(",", " ")
 
     return {
